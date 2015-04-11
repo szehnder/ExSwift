@@ -13,7 +13,7 @@ public extension String {
     /**
         String length
     */
-    var length: Int { return countElements(self) }
+    var length: Int { return count(self) }
     
     /**
         self.capitalizedString shorthand
@@ -91,7 +91,7 @@ public extension String {
         :returns: Array of substrings
     */
     func explode (separator: Character) -> [String] {
-        return split(self, { (element: Character) -> Bool in
+        return split(self, isSeparator: { (element: Character) -> Bool in
             return element == separator
         })
     }
@@ -107,7 +107,7 @@ public extension String {
 
         if let regex = ExSwift.regex(pattern, ignoreCase: ignoreCase) {
             //  Using map to prevent a possible bug in the compiler
-            return regex.matchesInString(self, options: nil, range: NSMakeRange(0, length)).map { $0 as NSTextCheckingResult }
+            return regex.matchesInString(self, options: nil, range: NSMakeRange(0, length)).map { $0 as! NSTextCheckingResult }
         }
 
         return nil
@@ -215,17 +215,21 @@ public extension String {
         :returns: A double parsed from the string or nil if it cannot be parsed.
     */
     func toDouble() -> Double? {
+      
+         let pattern = "^[-+]?[0-9]*\\.?[0-9]+$"
 
-        let scanner = NSScanner(string: self)
-        var double: Double = 0
+         if let regex = ExSwift.regex(pattern, ignoreCase: true) {
+             let text = self.trimmed()
+             let matches = regex.matchesInString(text, options: nil, range: NSMakeRange(0, count(text)))
+             if matches.isEmpty {
+                 return nil
+             }
 
-        if scanner.scanDouble(&double) {
-            return double
-        }
+             return (self as NSString).doubleValue
+         }
 
-        return nil
-
-    }
+         return nil
+     }
 
     /**
        Parses a string containing a float numerical value into an optional float if the string is a well formed number.

@@ -214,7 +214,7 @@ class ExSwiftStringTests: XCTestCase {
         c.month = 8
         c.day = 19
 
-        var gregorian = NSCalendar(identifier:NSGregorianCalendar)!
+        var gregorian = NSCalendar(identifier:NSCalendarIdentifierGregorian)!
         var expected = gregorian.dateFromComponents(c)!
 
         XCTAssertEqual(expected, d)
@@ -235,7 +235,7 @@ class ExSwiftStringTests: XCTestCase {
         c.minute = 4
         c.second = 34
 
-        var gregorian = NSCalendar(identifier:NSGregorianCalendar)!
+        var gregorian = NSCalendar(identifier:NSCalendarIdentifierGregorian)!
         var expected = gregorian.dateFromComponents(c)!
 
         XCTAssertEqual(expected, d)
