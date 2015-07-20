@@ -16,7 +16,7 @@ internal extension Range {
         :param: function Function to call
     */
     func times (function: () -> ()) {
-        each { (current: T) -> () in
+        each { (current: Element) -> () in
             function()
         }
     }
@@ -26,7 +26,7 @@ internal extension Range {
     
         :param: function Function to invoke
     */
-    func times (function: (T) -> ()) {
+    func times (function: (Element) -> ()) {
         each (function)
     }
 
@@ -35,7 +35,7 @@ internal extension Range {
     
         :param: function Function to invoke
     */
-    func each (function: (T) -> ()) {
+    func each (function: (Element) -> ()) {
         for i in self {
             function(i)
         }
@@ -46,13 +46,13 @@ internal extension Range {
 	
 		:returns: Each element of the range in an array
 	*/
-    func toArray () -> [T] {
-        var result: [T] = []
-        for i in self {
-            result.append(i)
-        }
-        return result
-    }
+//    func toArray (Element -> [Element] {
+//        var result: [Element] = []
+//        for i in self {
+//            result.append(i)
+//        }
+//        return result
+//    }
 
     /**
         Range of Int with random bounds between from and to (inclusive).
@@ -62,8 +62,8 @@ internal extension Range {
         :returns: Random range
     */
     static func random (from: Int, to: Int) -> Range<Int> {
-        let lowerBound = Int.random(min: from, max: to)
-        let upperBound = Int.random(min: lowerBound, max: to)
+        let lowerBound = Int.random(from, max: to)
+        let upperBound = Int.random(lowerBound, max: to)
         
         return lowerBound...upperBound
     }

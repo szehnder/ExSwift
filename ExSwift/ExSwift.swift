@@ -210,17 +210,19 @@ public class ExSwift {
     */
     internal class func regex (pattern: String, ignoreCase: Bool = false) -> NSRegularExpression? {
         
-        var options = NSRegularExpressionOptions.DotMatchesLineSeparators.rawValue
+        var options = NSRegularExpressionOptions.DotMatchesLineSeparators
         
         if ignoreCase {
-            options = NSRegularExpressionOptions.CaseInsensitive.rawValue | options
+            options = [NSRegularExpressionOptions.CaseInsensitive, options]
         }
 
-        var error: NSError? = nil
-        let regex = NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions(rawValue: options), error: &error)
-            
-        return (error == nil) ? regex : nil
-        
+        do {
+            let regex = try NSRegularExpression(pattern: pattern, options: options)
+            return regex
+        } catch let error as NSError {
+            print(error)
+            return nil
+        }
     }
     
 }
@@ -256,7 +258,7 @@ extension ExSwift {
             result.append(obj)
         } else if reflection.disposition == .ObjCObject {
             
-            var bridgedValue: T!?
+//            var bridgedValue: T!?
 
             //  If it is an NSArray, flattening will produce the expected result
             if let array = object as? NSArray {

@@ -147,9 +147,9 @@ public extension Int {
     func digits () -> [Int] {
         var result = [Int]()
         
-        for char in String(self) {
+        for char in String(self).characters {
             let string = String(char)
-            if let toInt = string.toInt() {
+            if let toInt = Int(string) {
                 result.append(toInt)
             }
         }

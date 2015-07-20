@@ -13,7 +13,7 @@ public extension String {
     /**
         String length
     */
-    var length: Int { return count(self) }
+    var length: Int { return self.characters.count }
     
     /**
         self.capitalizedString shorthand
@@ -57,7 +57,7 @@ public extension String {
         :returns: Character as String or nil if the index is out of bounds
     */
     subscript (index: Int) -> String? {
-        if let char = Array(self).get(index) {
+        if let char = Array(arrayLiteral: self).get(index) {
             return String(char)
         }
 
@@ -91,9 +91,7 @@ public extension String {
         :returns: Array of substrings
     */
     func explode (separator: Character) -> [String] {
-        return split(self, isSeparator: { (element: Character) -> Bool in
-            return element == separator
-        })
+        return split(self.characters, isSeparator: {$0 == separator}).map({String($0)})
     }
 
     /**
@@ -107,7 +105,7 @@ public extension String {
 
         if let regex = ExSwift.regex(pattern, ignoreCase: ignoreCase) {
             //  Using map to prevent a possible bug in the compiler
-            return regex.matchesInString(self, options: nil, range: NSMakeRange(0, length)).map { $0 as! NSTextCheckingResult }
+            return regex.matchesInString(self, options: [], range: NSMakeRange(0, length)).map { $0 as NSTextCheckingResult }
         }
 
         return nil
@@ -120,7 +118,7 @@ public extension String {
         :param: string String to insert
         :returns: String formed from self inserting string at index
     */
-    func insert (var index: Int, _ string: String) -> String {
+    func insert ( index: Int, _ string: String) -> String {
         //  Edge cases, prepend and append
         if index > length {
             return self + string
@@ -201,7 +199,7 @@ public extension String {
         let max = charset.length - 1
 
         len.times {
-            result += charset[Int.random(min: 0, max: max)]!
+            result += charset[Int.random(0, max: max)]!
         }
 
         return result
@@ -220,7 +218,7 @@ public extension String {
 
          if let regex = ExSwift.regex(pattern, ignoreCase: true) {
              let text = self.trimmed()
-             let matches = regex.matchesInString(text, options: nil, range: NSMakeRange(0, count(text)))
+             let matches = regex.matchesInString(text, options: [], range: NSMakeRange(0, text.length))
              if matches.isEmpty {
                  return nil
              }
@@ -255,7 +253,7 @@ public extension String {
         :returns: A UInt parsed from the string or nil if it cannot be parsed.
     */
     func toUInt() -> UInt? {
-        if let val = self.trimmed().toInt() {
+        if let val = Int(self.trimmed()) {
             if val < 0 {
                 return nil
             }
@@ -288,7 +286,7 @@ public extension String {
     */
     func toDate(format : String? = "yyyy-MM-dd") -> NSDate? {
         let text = self.trimmed().lowercaseString
-        var dateFmt = NSDateFormatter()
+        let dateFmt = NSDateFormatter()
         dateFmt.timeZone = NSTimeZone.defaultTimeZone()
         if let fmt = format {
             dateFmt.dateFormat = fmt
@@ -303,7 +301,7 @@ public extension String {
       :returns: A NSDate parsed from the string or nil if it cannot be parsed as a date.
     */
     func toDateTime(format : String? = "yyyy-MM-dd hh-mm-ss") -> NSDate? {
-        return toDate(format: format)
+        return toDate(format)
     }
 
 }
@@ -324,19 +322,19 @@ public func * (first: String, n: Int) -> String {
 //  Pattern matching using a regular expression
 public func =~ (string: String, pattern: String) -> Bool {
     let regex = ExSwift.regex(pattern, ignoreCase: false)!
-    let matches = regex.numberOfMatchesInString(string, options: nil, range: NSMakeRange(0, string.length))
+    let matches = regex.numberOfMatchesInString(string, options: [], range: NSMakeRange(0, string.length))
     return matches > 0
 }
 
 //  Pattern matching using a regular expression
 public func =~ (string: String, regex: NSRegularExpression) -> Bool {
-    let matches = regex.numberOfMatchesInString(string, options: nil, range: NSMakeRange(0, string.length))
+    let matches = regex.numberOfMatchesInString(string, options: [], range: NSMakeRange(0, string.length))
     return matches > 0
 }
 
 //  This version also allowes to specify case sentitivity
 public func =~ (string: String, options: (pattern: String, ignoreCase: Bool)) -> Bool {
-    if let matches = ExSwift.regex(options.pattern, ignoreCase: options.ignoreCase)?.numberOfMatchesInString(string, options: nil, range: NSMakeRange(0, string.length)) {
+    if let matches = ExSwift.regex(options.pattern, ignoreCase: options.ignoreCase)?.numberOfMatchesInString(string, options: [], range: NSMakeRange(0, string.length)) {
         return matches > 0
     }
 

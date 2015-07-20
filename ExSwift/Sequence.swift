@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal extension SequenceOf {
+internal extension AnySequence {
 
     /**
         First element of the sequence.
@@ -16,7 +16,7 @@ internal extension SequenceOf {
         :returns: First element of the sequence if present
     */
     func first () -> T? {
-        var generator =  self.generate()
+        let generator =  self.generate()
         return generator.next()
     }
     
@@ -27,7 +27,7 @@ internal extension SequenceOf {
         :returns: True if call returns true for any element of self
     */
     func any (call: (T) -> Bool) -> Bool {
-        var generator =  self.generate()
+        let generator =  self.generate()
         while let nextItem = generator.next() {
             if call(nextItem) {
                 return true
@@ -43,7 +43,7 @@ internal extension SequenceOf {
         :returns: Object at index in sequence, nil if index is out of bounds
     */
     func get (index: Int) -> T? {
-        var generator =  self.generate()
+        let generator =  self.generate()
         for _ in 0..<(index - 1) {
             generator.next()
         }
@@ -56,7 +56,7 @@ internal extension SequenceOf {
         :param: range
         :returns: Subsequence in range
     */
-    func get (range: Range<Int>) -> SequenceOf<T> {
+    func get (range: Range<Int>) -> AnySequence<T> {
         return self.skip(range.startIndex).take(range.endIndex - range.startIndex)
     }
     
@@ -85,12 +85,12 @@ internal extension SequenceOf {
         :param: n Number of elements to skip
         :returns: Sequence from n to the end
     */
-    func skip (n: Int) -> SequenceOf<T> {
-        var generator =  self.generate()
+    func skip (n: Int) -> AnySequence<T> {
+        let generator =  self.generate()
         for _ in 0..<n {
             generator.next()
         }
-        return SequenceOf(generator)
+        return AnySequence(generator)
     }
     
     /**
@@ -99,8 +99,8 @@ internal extension SequenceOf {
         :param: include Function invoked to test elements for inclusion in the sequence
         :returns: Filtered sequence
     */
-    func filter(include: (T) -> Bool) -> SequenceOf<T> {
-        return SequenceOf(lazy(self).filter(include))
+    func filter(include: (T) -> Bool) -> AnySequence<T> {
+        return AnySequence(lazy(self).filter(include))
     }
     
     /**
@@ -109,7 +109,7 @@ internal extension SequenceOf {
         :param: exclude Function invoked to test elements for exlcusion from the sequence
         :returns: Filtered sequence
     */
-    func reject (exclude: (T -> Bool)) -> SequenceOf<T> {
+    func reject (exclude: (T -> Bool)) -> AnySequence<T> {
         return self.filter {
             return !exclude($0)
         }
@@ -121,21 +121,21 @@ internal extension SequenceOf {
         :param: condition A function which returns a boolean if an element satisfies a given condition or not
         :returns: Elements of the sequence starting with the element which does not meet the condition
     */
-    func skipWhile(condition:(T) -> Bool) -> SequenceOf<T> {
-        var generator =  self.generate()
-        var checkingGenerator = self.generate()
+    func skipWhile(condition:(T) -> Bool) -> AnySequence<T> {
+        let generator =  self.generate()
+        let checkingGenerator = self.generate()
         
         var keepSkipping = true
         
         while keepSkipping {
-            var nextItem = checkingGenerator.next()
+            let nextItem = checkingGenerator.next()
             keepSkipping = nextItem != nil ? condition(nextItem!) : false
             
             if keepSkipping {
                 generator.next()
             }
         }
-        return SequenceOf(generator)
+        return AnySequence(generator)
     }
     
     /**
@@ -145,7 +145,7 @@ internal extension SequenceOf {
         :returns: true if self contains item
     */
     func contains<T:Equatable> (item: T) -> Bool {
-        var generator =  self.generate()
+        let generator =  self.generate()
         while let nextItem = generator.next() {
             if nextItem as! T == item {
                 return true
@@ -160,8 +160,8 @@ internal extension SequenceOf {
         :param: n Number of elements to take
         :returns: First n elements
     */
-    func take (n: Int) -> SequenceOf<T> {
-        return SequenceOf(TakeSequence(self, n))
+    func take (n: Int) -> AnySequence<T> {
+        return AnySequence(TakeSequence(self, n))
     }
     
     /**
@@ -170,8 +170,8 @@ internal extension SequenceOf {
         :param: condition A function which returns a boolean if an element satisfies a given condition or not.
         :returns: Elements of the sequence up until an element does not meet the condition
     */
-    func takeWhile (condition:(T?) -> Bool) -> SequenceOf<T>  {
-        return SequenceOf(TakeWhileSequence(self, condition))
+    func takeWhile (condition:(T?) -> Bool) -> AnySequence<T>  {
+        return AnySequence(TakeWhileSequence(self, condition))
     }
 
 	/**
@@ -200,10 +200,10 @@ public struct TakeSequence<S: SequenceType>: SequenceType {
         self.n = n
     }
  
-    public func generate() -> GeneratorOf<S.Generator.Element> {
+    public func generate() -> AnyGenerator<S.Generator.Element> {
         var count = 0
         var generator = self.sequence.generate()
-        return GeneratorOf<S.Generator.Element> {
+        return AnyGenerator<S.Generator.Element> {
             count++
             if count > self.n {
                 return nil
@@ -226,10 +226,10 @@ public struct TakeWhileSequence<S: SequenceType>: SequenceType {
         self.condition = condition
     }
     
-    public func generate() -> GeneratorOf<S.Generator.Element> {
+    public func generate() -> AnyGenerator<S.Generator.Element> {
         var generator = self.sequence.generate()
         var endConditionMet = false
-        return GeneratorOf<S.Generator.Element> {
+        return AnyGenerator<S.Generator.Element> {
             let next: S.Generator.Element? = generator.next()
             if !endConditionMet {
                 endConditionMet = !self.condition(next)

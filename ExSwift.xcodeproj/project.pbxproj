@@ -32,7 +32,6 @@
 		1ED536841943863100BDA94E /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED536831943863100BDA94E /* ExSwift.swift */; };
 		24D9BBF11AC54B31000FDBB8 /* ExSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24D9BBE61AC54B30000FDBB8 /* ExSwift.framework */; };
 		24D9BBFF1AC54BCF000FDBB8 /* ExSwift.h in Headers */ = {isa = PBXBuildFile; fileRef = 1E11AF891943222D006BCE48 /* ExSwift.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		24D9BC001AC54C1C000FDBB8 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB977195C7FAF0009BDA0 /* Sequence.swift */; };
 		24D9BC011AC54C1C000FDBB8 /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED536831943863100BDA94E /* ExSwift.swift */; };
 		24D9BC021AC54C1C000FDBB8 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11AFAC1943225B006BCE48 /* Array.swift */; };
 		24D9BC031AC54C1C000FDBB8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C1D701A365CA6003D386E /* Character.swift */; };
@@ -44,7 +43,6 @@
 		24D9BC091AC54C1C000FDBB8 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11AFB11943225B006BCE48 /* String.swift */; };
 		24D9BC0A1AC54C1C000FDBB8 /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC241FB1946E91B0047109A /* NSArray.swift */; };
 		24D9BC0B1AC54C1C000FDBB8 /* NSDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12168FC91A22852300ED4105 /* NSDate.swift */; };
-		24D9BC0C1AC54C2B000FDBB8 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB977195C7FAF0009BDA0 /* Sequence.swift */; };
 		24D9BC0D1AC54C2B000FDBB8 /* ExSwift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ED536831943863100BDA94E /* ExSwift.swift */; };
 		24D9BC0E1AC54C2B000FDBB8 /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11AFAC1943225B006BCE48 /* Array.swift */; };
 		24D9BC0F1AC54C2B000FDBB8 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C1D701A365CA6003D386E /* Character.swift */; };
@@ -76,8 +74,6 @@
 		2EB34F0A195473AC00A8D2AF /* Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11AFB01943225B006BCE48 /* Range.swift */; };
 		2EB34F0B195473AC00A8D2AF /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E11AFB11943225B006BCE48 /* String.swift */; };
 		2EB34F0C195473AC00A8D2AF /* NSArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EC241FB1946E91B0047109A /* NSArray.swift */; };
-		3C0AB978195C7FAF0009BDA0 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB977195C7FAF0009BDA0 /* Sequence.swift */; };
-		3C0AB979195C7FB20009BDA0 /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB977195C7FAF0009BDA0 /* Sequence.swift */; };
 		3C0AB97D195C7FBC0009BDA0 /* ExSwiftSequenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C0AB97C195C7FBC0009BDA0 /* ExSwiftSequenceTests.swift */; };
 		CC633BA61A37142900341557 /* ExSwiftCharacterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC633BA51A37142900341557 /* ExSwiftCharacterTests.swift */; };
 		CC633BA71A37144E00341557 /* Character.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8C1D701A365CA6003D386E /* Character.swift */; };
@@ -337,7 +333,8 @@
 		1E11AF7B1943222D006BCE48 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0600;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = pNre;
 				TargetAttributes = {
 					1E11AF831943222D006BCE48 = {
@@ -414,7 +411,6 @@
 				1EC241FC1946E91B0047109A /* NSArray.swift in Sources */,
 				1E11AFBC1943225B006BCE48 /* String.swift in Sources */,
 				CC8C1D711A365CA6003D386E /* Character.swift in Sources */,
-				3C0AB978195C7FAF0009BDA0 /* Sequence.swift in Sources */,
 				1E11AFB21943225B006BCE48 /* Array.swift in Sources */,
 				1ED536841943863100BDA94E /* ExSwift.swift in Sources */,
 				1E11AFB41943225B006BCE48 /* Dictionary.swift in Sources */,
@@ -437,7 +433,6 @@
 				2EB34F06195473AC00A8D2AF /* Array.swift in Sources */,
 				1EC241FE1946E92E0047109A /* ExSwiftNSArrayTests.swift in Sources */,
 				2EB34F07195473AC00A8D2AF /* Dictionary.swift in Sources */,
-				3C0AB979195C7FB20009BDA0 /* Sequence.swift in Sources */,
 				1E48E6231973ED22006FEEC8 /* ExSwiftDoubleTests.swift in Sources */,
 				1E11AFA819432236006BCE48 /* ExSwiftFloatTests.swift in Sources */,
 				1E11AFA719432236006BCE48 /* ExSwiftDictionaryTests.swift in Sources */,
@@ -461,7 +456,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24D9BC001AC54C1C000FDBB8 /* Sequence.swift in Sources */,
 				24D9BC011AC54C1C000FDBB8 /* ExSwift.swift in Sources */,
 				24D9BC021AC54C1C000FDBB8 /* Array.swift in Sources */,
 				24D9BC031AC54C1C000FDBB8 /* Character.swift in Sources */,
@@ -492,7 +486,6 @@
 				24D9BC211AC54C32000FDBB8 /* ExSwiftTests.swift in Sources */,
 				24D9BC221AC54C32000FDBB8 /* ExSwiftNSArrayTests.swift in Sources */,
 				24D9BC231AC54C32000FDBB8 /* ExSwiftNSDateTests.swift in Sources */,
-				24D9BC0C1AC54C2B000FDBB8 /* Sequence.swift in Sources */,
 				24D9BC0D1AC54C2B000FDBB8 /* ExSwift.swift in Sources */,
 				24D9BC0E1AC54C2B000FDBB8 /* Array.swift in Sources */,
 				24D9BC0F1AC54C2B000FDBB8 /* Character.swift in Sources */,
@@ -539,6 +532,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -620,6 +614,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwift;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
@@ -640,6 +635,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwift;
 				SKIP_INSTALL = YES;
 			};
@@ -660,6 +656,7 @@
 				INFOPLIST_FILE = ExSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwiftTests;
 			};
 			name = Debug;
@@ -675,6 +672,7 @@
 				INFOPLIST_FILE = ExSwiftTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks @executable_path/Frameworks @loader_path/Frameworks";
 				METAL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwiftTests;
 			};
 			name = Release;
@@ -697,6 +695,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -719,6 +718,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwift;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -744,6 +744,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwiftTests;
 				SDKROOT = iphoneos;
 			};
@@ -763,6 +764,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "co.pNre.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = ExSwiftTests;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
